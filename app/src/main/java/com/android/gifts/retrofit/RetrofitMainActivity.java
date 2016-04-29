@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -118,8 +119,7 @@ public class RetrofitMainActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onFailure(Call<WeatherDataBean> call, Throwable t) {
                 loadingProgressBar.setVisibility(View.GONE);
-                getLondonCurrentWeatherLinearLayout.setVisibility(View.VISIBLE);
-                pressureTextView.setText("Request is failed");
+                Toast.makeText(RetrofitMainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -131,10 +131,12 @@ public class RetrofitMainActivity extends AppCompatActivity implements View.OnCl
      */
     private void updateUI(WeatherDataBean weatherDataBean) {
         loadingProgressBar.setVisibility(View.GONE);
-        getLondonCurrentWeatherLinearLayout.setVisibility(View.VISIBLE);
-        temperatureTextView.setText("Temperature : " + weatherDataBean.getMain().getTemp() + " Celsius");
-        pressureTextView.setText("Pressure : " + weatherDataBean.getMain().getPressure());
-        humidityTextView.setText("Humidity : " + weatherDataBean.getMain().getHumidity());
+        if (weatherDataBean != null) {
+            getLondonCurrentWeatherLinearLayout.setVisibility(View.VISIBLE);
+            temperatureTextView.setText("Temperature : " + weatherDataBean.getMain().getTemp() + " Celsius");
+            pressureTextView.setText("Pressure : " + weatherDataBean.getMain().getPressure());
+            humidityTextView.setText("Humidity : " + weatherDataBean.getMain().getHumidity());
+        }
     }
 
     /**
@@ -183,8 +185,14 @@ public class RetrofitMainActivity extends AppCompatActivity implements View.OnCl
                 Call<WeatherDataBean> call = getWeatherApi.getWeatherFromApiSyncAndAsync(CITY_NAME, UNITS, APP_ID);
                 Response<WeatherDataBean> response = call.execute();
                 weatherDataBean = response.body();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (final IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(RetrofitMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             return weatherDataBean;
