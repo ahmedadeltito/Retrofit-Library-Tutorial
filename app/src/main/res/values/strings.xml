@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Retrofit Example</string>
+    <string name="get_weather_async">London Current Weather Asynchronously</string>
+    <string name="get_weather_sync">London Current Weather Synchronously</string>
+    <string name="temperature">Temperature</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+</resources>
