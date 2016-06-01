@@ -671,19 +671,19 @@ public class RetrofitMainActivity extends AppCompatActivity implements View.OnCl
 
 # Finally The Retrofit Example Application after running should be as screenshots attached below:
 
-* Main Screen with two buttons “London Current Weather Synchronously” and “London Current Weather Asynchronously”
+Main Screen with two buttons “London Current Weather Synchronously” and “London Current Weather Asynchronously”
 
 ![alt tag](http://androidgifts.com/wp-content/uploads/2016/04/Home-Screen-576x1024.png)
 
-* After pressing on “London Current Weather Synchronously”:
+After pressing on “London Current Weather Synchronously”:
 
 ![alt tag](http://androidgifts.com/wp-content/uploads/2016/04/After-pressing-on-London-Current-Weather-Synchronously-576x1024.png)
 
-* After pressing on “London Current Weather Asynchronously”
+After pressing on “London Current Weather Asynchronously”
 
 ![alt tag](http://androidgifts.com/wp-content/uploads/2016/04/After-pressing-on-London-Current-Weather-Asynchronously-576x1024.png)
 
-* Loading progress bar appears informing the user that your request is in progress
+Loading progress bar appears informing the user that your request is in progress
 
 ![alt tag](http://androidgifts.com/wp-content/uploads/2016/04/Loading-576x1024.png)
 
